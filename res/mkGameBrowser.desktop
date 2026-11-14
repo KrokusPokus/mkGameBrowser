@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Game Browser
+GenericName=Game collection browser
+GenericName[de]=Spielesammlung durchsuchen
+Comment=Browse and start games by cover
+Comment[de]=Spiele anhand ihrer Cover durchsuchen und starten
+Exec=mkGameBrowser
+Icon=mkGameBrowser
+Categories=Game;
+StartupWMClass=mkGameBrowser

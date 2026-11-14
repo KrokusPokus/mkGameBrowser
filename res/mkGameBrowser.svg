@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="8" fill="#202020"/>
+  <!-- Cover-Raster -->
+  <rect x="8"  y="9"  width="13" height="18" rx="1.5" fill="#d04a3a"/>
+  <rect x="25" y="9"  width="13" height="18" rx="1.5" fill="#3a7bd0"/>
+  <rect x="42" y="9"  width="14" height="18" rx="1.5" fill="#e0b030"/>
+  <rect x="8"  y="33" width="20" height="2" fill="#cbcbcb"/>
+  <rect x="28" y="33" width="14" height="2" fill="#777"/>
+  <!-- Gamepad -->
+  <path d="M18 41h28c6 0 9 5 9 10s-3 7-6 7c-3 0-5-3-7-5H22c-2 2-4 5-7 5s-6-2-6-7 3-10 9-10z" fill="#e8e8e8"/>
+  <path d="M19 46v8M15 50h8" stroke="#202020" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="43" cy="48" r="2.2" fill="#d04a3a"/>
+  <circle cx="48" cy="52" r="2.2" fill="#3a7bd0"/>
+</svg>
