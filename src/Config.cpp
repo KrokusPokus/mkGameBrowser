@@ -42,17 +42,20 @@ void CConfig::Load(QSettings& settings)
 
     sRetroArch       = ReadOrDefault(settings, QStringLiteral("Paths/RetroArch"), QStringLiteral("retroarch"));
     sRetroArchConfig = ReadOrDefault(settings, QStringLiteral("Paths/RetroArchConfig"), sHome + QStringLiteral("/.config/retroarch/retroarch.cfg"));
-    aCoreDirs        = ReadOrDefault(settings, QStringLiteral("Paths/CoreDirs"),
-                                     sHome + QStringLiteral("/.config/retroarch/cores;/usr/lib/libretro")).split(QLatin1Char(';'), Qt::SkipEmptyParts);
+    aCoreDirs        = ReadOrDefault(settings, QStringLiteral("Paths/CoreDirs"), sHome + QStringLiteral("/.config/retroarch/cores;/usr/lib/libretro")).split(QLatin1Char(';'), Qt::SkipEmptyParts);
+
     // ROM and PC folders: empty entry = derive automatically from the GameInfo folder (as in the original).
     // Derived values are not saved, so they follow a changed GameInfo folder.
     sRomsDir         = ReadOrDefault(settings, QStringLiteral("Paths/RomsDir"), QString());
     sPcGamesDir      = ReadOrDefault(settings, QStringLiteral("Paths/PcGamesDir"), QString());
-    if (sRomsDir.isEmpty())
+
+    if (sRomsDir.isEmpty()) {
         sRomsDir = sDefaultRoms;
-    if (sPcGamesDir.isEmpty() && !sUserD.isEmpty())
+    }
+
+    if (sPcGamesDir.isEmpty() && !sUserD.isEmpty()) {
         sPcGamesDir = sUserD + QStringLiteral("/Games");
-    sTextEditor      = ReadOrDefault(settings, QStringLiteral("Programs/TextEditor"), QString());
+    }
 
     // System table from GetLaunchData() (cores as Linux .so instead of Windows .dll)
     const QList<QPair<QString, SSystemLaunch>> aDefaults = {
@@ -63,6 +66,7 @@ void CConfig::Load(QSettings& settings)
         { "Sony PlayStation",   { "mednafen_psx_libretro",   "Sony - PlayStation" } },
         { "Nintendo SNES",      { "bsnes_libretro",          "Nintendo - Super Nintendo Entertainment System" } },
     };
+
     settings.beginGroup(QStringLiteral("Systems"));
     if (settings.childGroups().isEmpty()) {
         for (const auto& [sSystem, sys] : aDefaults) {
@@ -70,6 +74,7 @@ void CConfig::Load(QSettings& settings)
             settings.setValue(sSystem + QStringLiteral("/RomSubdir"), sys.sRomSubdir);
         }
     }
+
     mapSystems.clear();
     for (const QString& sSystem : settings.childGroups()) {
         SSystemLaunch sys;

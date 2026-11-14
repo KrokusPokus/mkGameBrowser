@@ -274,24 +274,24 @@ Esc	Schließen</translation>
 <context>
     <name>QObject</name>
     <message>
+        <location filename="../src/GameLibrary.cpp" line="108"/>
         <location filename="../src/GameLibrary.cpp" line="118"/>
-        <location filename="../src/GameLibrary.cpp" line="128"/>
-        <location filename="../src/GameLibrary.cpp" line="135"/>
+        <location filename="../src/GameLibrary.cpp" line="125"/>
         <source>Could not create file: &quot;%1&quot;</source>
         <translation>Datei konnte nicht erstellt werden: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/GameLibrary.cpp" line="250"/>
+        <location filename="../src/GameLibrary.cpp" line="239"/>
         <source>%1 (not executable)</source>
         <translation>%1 (nicht ausführbar)</translation>
     </message>
     <message>
-        <location filename="../src/GameLibrary.cpp" line="266"/>
+        <location filename="../src/GameLibrary.cpp" line="255"/>
         <source>core for system &quot;%1&quot;</source>
         <translation>Core für System &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/GameLibrary.cpp" line="267"/>
+        <location filename="../src/GameLibrary.cpp" line="256"/>
         <source>ROM folder for system &quot;%1&quot;</source>
         <translation>ROM-Ordner für System &quot;%1&quot;</translation>
     </message>

@@ -35,7 +35,6 @@ public:
     QStringList                 aCoreDirs;          // searched in order
     QString                     sRomsDir;           // <UserD>/retroarch-roms
     QString                     sPcGamesDir;        // base for relative paths in Launch.conf of PC games
-    QString                     sTextEditor;        // .desktop ID, program or path; empty = default application
     QMap<QString, SSystemLaunch> mapSystems;        // system folder -> core/ROM subfolder
 };
 

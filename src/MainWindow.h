@@ -53,6 +53,7 @@ private:
     void OpenUrl(const QString& sUrl);
     void WebSearch(int nGame);
     void OpenFolder(int nGame);
+    bool openWithSystemDefault(const QUrl &url);
     void ShowHelp();
     void OnThumbnailFailed(const QString& sMarker, const QString& sCoverPath);
 

@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 
 #include "GameGridView.h"
-#include "Helpers.h"
 #include "ThumbnailCache.h"
 
 #include <QActionGroup>
@@ -628,10 +627,8 @@ void CMainWindow::EditFile(const QString& sPath)
 {
     if (!QFileInfo::exists(sPath))
         return;
-    if (m_config.sTextEditor.isEmpty())
-        QDesktopServices::openUrl(QUrl::fromLocalFile(sPath));
-    else
-        Helpers::openFileListWithHandler(m_config.sTextEditor, { sPath });
+
+    openWithSystemDefault(QUrl::fromLocalFile(sPath));
 }
 
 // Links always open in the system default browser (xdg-settings get default-web-browser)
@@ -674,4 +671,22 @@ void CMainWindow::ShowHelp()
 void CMainWindow::OnThumbnailFailed(const QString& sMarker, const QString& sCoverPath)
 {
     qWarning("Could not create thumbnail \"%s\" from \"%s\"", qPrintable(sMarker), qPrintable(sCoverPath));
+}
+
+// Opens a file or URL using the system's default application.
+// We deliberately avoid using QDesktopServices directly: in that case, Qt—even outside of
+//  a sandbox—uses xdg-desktop-portal, which ignores the user's configured default for local files
+// (instead presenting a selection dialog, followed by remembering the chosen application).
+// In contrast, xdg-open queries the desktop environment (e.g., using kde-open on Plasma).
+// Returns true if the launch process was initiated.
+// This does not guarantee that xdg-open was actually able to open the file.
+bool CMainWindow::openWithSystemDefault(const QUrl &url) {
+    if (!url.isValid()) return false;
+
+    const QString xdgOpen = QStandardPaths::findExecutable(QStringLiteral("xdg-open"));
+    if (!xdgOpen.isEmpty()) {
+        const QString target = url.isLocalFile() ? url.toLocalFile() : url.toString(QUrl::FullyEncoded);
+        if (QProcess::startDetached(xdgOpen, { target })) return true;
+    }
+    return QDesktopServices::openUrl(url);
 }

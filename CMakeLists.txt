@@ -36,7 +36,6 @@ qt_add_executable(mkGameBrowser
     src/Config.h src/Config.cpp
     src/GameGridView.h src/GameGridView.cpp
     src/GameLibrary.h src/GameLibrary.cpp
-    src/Helpers.h src/Helpers.cpp
     src/InfoPopup.h src/InfoPopup.cpp
     src/MainWindow.h src/MainWindow.cpp
     src/ThumbnailCache.h src/ThumbnailCache.cpp
