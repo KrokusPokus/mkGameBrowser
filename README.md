@@ -37,7 +37,7 @@ Folders whose name starts with `_` are ignored. As in the original, a missing `G
 
 ## Configuration
 
-`~/.config/mkProjects/mkGameBrowser.conf`. The view (grouping, sorting, filters …), window geometry and scroll position are stored separately in `~/.local/state/mkGameBrowser/state.ini`.
+`~/.config/mkProjects/mkGameBrowser.conf`. The view (grouping, sorting, filters …), window geometry and scroll position are stored separately in `~/.local/state/mkProjects/mkGameBrowser_state.conf`.
 On first start you are asked for the GameInfo folder (or use `mkGameBrowser --gameinfo <folder>`). ROM and PC games folders are derived from `<UserD>` as in the original; all paths (GameInfo, thumbnail cache, RetroArch program and configuration, core folders, ROM and PC games folders) are in `[Paths]`; the mapping platform → core/ROM subfolder (`[Systems]`) can be adjusted there as well. In `[Programs]`, `TextEditor` sets which program is used to edit `GameInfo.txt` and `*.conf`: as a `.desktop` ID (e.g. `org.kde.kate.desktop`), program name or path; empty = system default application. Links (Google search) always open in the default browser.
 
 ## Building
