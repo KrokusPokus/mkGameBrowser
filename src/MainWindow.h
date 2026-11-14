@@ -57,7 +57,7 @@ private:
     void ShowHelp();
     void OnThumbnailFailed(const QString& sMarker, const QString& sCoverPath);
 
-    QSettings&          m_settings;         // configuration (~/.config/mkGameBrowser/mkGameBrowser.ini)
+    QSettings&          m_settings;         // configuration (~/.config/mkProjects/mkGameBrowser.conf)
     QString             m_stateFileFullPath;    // state: view, window, scroll position (StateLocation/state.ini)
     std::unique_ptr<QSettings> m_pState;
     CConfig             m_config;

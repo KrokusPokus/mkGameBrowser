@@ -10,6 +10,7 @@
 #include <QLibraryInfo>
 #include <QLocale>
 #include <QSettings>
+#include <QStandardPaths>
 #include <QTimer>
 #include <QTranslator>
 
@@ -39,8 +40,10 @@ int main(int argc, char* argv[])
     parser.addOption(optGameInfo);
     parser.process(app);
 
-    // ~/.config/mkGameBrowser/mkGameBrowser.ini
-    QSettings settings(QSettings::IniFormat, QSettings::UserScope, QStringLiteral("mkGameBrowser"), QStringLiteral("mkGameBrowser"));
+    // ~/.config/mkProjects/mkGameBrowser.conf
+    const QString sConfigDir = QDir(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation)).filePath(QStringLiteral("mkProjects"));
+    QDir().mkpath(sConfigDir);
+    QSettings settings(QDir(sConfigDir).filePath(QStringLiteral("mkGameBrowser.conf")), QSettings::IniFormat);
     CConfig config;
     config.Load(settings);
 
