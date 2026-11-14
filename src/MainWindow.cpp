@@ -617,18 +617,16 @@ void CMainWindow::Launch(const QString& sConfPath)
 
 void CMainWindow::OpenFile(const QString& sPath)
 {
-    if (QFileInfo::exists(sPath))
+    if (QFileInfo::exists(sPath)) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(sPath));
+    }
 }
 
-// TextEditor from the INI: .desktop ID (e.g. "org.kde.kate.desktop"), program name in PATH or
-// absolute path. Empty = system default application.
 void CMainWindow::EditFile(const QString& sPath)
 {
-    if (!QFileInfo::exists(sPath))
-        return;
-
-    openWithSystemDefault(QUrl::fromLocalFile(sPath));
+    if (QFileInfo::exists(sPath)) {
+        openWithSystemDefault(QUrl::fromLocalFile(sPath));
+    }
 }
 
 // Links always open in the system default browser (xdg-settings get default-web-browser)
