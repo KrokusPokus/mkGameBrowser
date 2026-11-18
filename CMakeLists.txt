@@ -86,13 +86,3 @@ install(FILES res/mkGameBrowser.desktop
 install(FILES res/mkGameBrowser.svg
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
 )
-
-if(LINUX)
-    add_custom_command(TARGET mkGameBrowser POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:mkGameBrowser>
-            $ENV{HOME}/.local/bin/mkGameBrowser
-
-        COMMENT "Copying mkGameBrowser to ~/.local/bin/"
-    )
-endif()

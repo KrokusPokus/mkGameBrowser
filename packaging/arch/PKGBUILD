@@ -1,0 +1,52 @@
+# Maintainer: KrokusPokus
+#
+# Baut den aktuellen Stand des Standard-Branches von GitHub.
+# Bauen und installieren: makepkg -si
+
+pkgname=mkgamebrowser-git
+_pkgname=mkGameBrowser
+pkgver=r0.0000000
+pkgrel=1
+pkgdesc='Browse and start games (RetroArch and PC) by cover'
+arch=('x86_64')
+url='https://github.com/KrokusPokus/mkGameBrowser'
+license=('GPL-3.0-only')
+depends=(
+  'glibc'
+  'hicolor-icon-theme'
+  'libstdc++'
+  'qt6-base'
+  'qt6-svg'   # SVG-Fenstericons
+)
+makedepends=(
+  'cmake'
+  'git'
+  'qt6-tools'   # lupdate/lrelease fuer die Uebersetzungen
+)
+optdepends=(
+  'retroarch: starting emulated games'
+  'xdg-utils: opening links and files in the default application'
+)
+provides=('mkgamebrowser')
+conflicts=('mkgamebrowser')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+  # Release statt der bei Arch ueblichen None: die CMakeLists setzt NDEBUG nur fuer Release
+  cmake -B build -S "$_pkgname" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -Wno-dev
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
