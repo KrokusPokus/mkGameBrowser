@@ -47,12 +47,6 @@ On first start you are asked for the GameInfo folder (or use `mkGameBrowser --ga
 ./build_lupdate.sh    # updates i18n/*.ts
 ```
 
-Install system-wide as an Arch package (builds the current state from GitHub):
-
-```
-cd packaging/arch && makepkg -si
-```
-
 ## License
 
 GPL-3.0-only, see [LICENSE](LICENSE).
