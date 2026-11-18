@@ -615,7 +615,7 @@ void CMainWindow::Launch(const QString& sConfPath)
 void CMainWindow::OpenFile(const QString& sPath)
 {
     if (QFileInfo::exists(sPath)) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(sPath));
+        openWithSystemDefault(QUrl::fromLocalFile(sPath));
     }
 }
 
@@ -647,7 +647,7 @@ void CMainWindow::OpenFolder(int nGame)
     // Ctrl+L without a game under the mouse -> GameInfo main folder
     const QString sPath = nGame >= 0 ? m_aGames.at(nGame).sGamePath : m_config.sGameInfoDir;
     if (QFileInfo(sPath).isDir())
-        QDesktopServices::openUrl(QUrl::fromLocalFile(sPath));
+        openWithSystemDefault(QUrl::fromLocalFile(sPath));
 }
 
 void CMainWindow::ShowHelp()
